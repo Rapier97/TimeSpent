@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var seconds = 0
     var timer = Timer()
     var timeIsRunning = false
+    var resumeTapped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pauseButton(_ sender: UIButton) {
+        
+        if self.resumeTapped == false {
+            timer.invalidate()
+            self.resumeTapped = true
+        } else {
+            runTimer()
+            self.resumeTapped = false
+        }
+        
     }
+
     @IBAction func resetButton(_ sender: UIButton) {
     }
     
