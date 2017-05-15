@@ -10,16 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var countdownOutler: UILabel!
+    
+    var seconds = 0
+    var timer = Timer()
+    var timeIsRunning = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func startButton(_ sender: UIButton) {
+        runTimer()
     }
 
-
+    @IBAction func pauseButton(_ sender: UIButton) {
+    }
+    @IBAction func resetButton(_ sender: UIButton) {
+    }
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
 }
-
+    
+    func updateTimer() {
+        seconds += 1
+        countdownOutler.text = "\(seconds)"
+    }
+}
